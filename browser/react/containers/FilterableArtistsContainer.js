@@ -2,7 +2,7 @@ import React from 'react';
 import FilterInput from '../components/FilterInput';
 import Artists from '../components/Artists';
 
-import store from '../store';
+import { connect } from 'react-redux';
 
 class FilterableArtistsContainer extends React.Component {
 

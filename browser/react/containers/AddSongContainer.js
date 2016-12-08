@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import AddSong from '../components/AddSong';
-import {loadAllSongs, addSongToPlaylist, handleChange, handleSubmit} from '../action-creators/playlists';
+import {loadAllSongs, addSongToPlaylist, handleSongChange, handleSongSubmit} from '../action-creators/playlists';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -12,10 +12,10 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     handleChange: function (event) {
-      dispatch(handleChange(event));
+      dispatch(handleSongChange(event));
     },
     handleSubmit: function (event) {
-      dispatch(handleSubmit(event));
+      dispatch(handleSongSubmit(event));
     }
   }
 }

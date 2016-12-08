@@ -3,7 +3,10 @@ import {
   RECEIVE_PLAYLIST,
   RECEIVE_SONGS,
   CHANGE_ERROR,
-  UPDATE_SONG
+  UPDATE_SONG,
+  UPDATE_NAME,
+  CHANGE_DIRTY,
+  UPDATE_WARNING
 } from '../constants';
 
 import axios from 'axios';
@@ -91,36 +94,67 @@ export const addSongToPlaylist = (playlistId, songId) => {
 export const updateSongId = (songId) => ({
   type: UPDATE_SONG,
   songId
-})
+});
 
 export const changeError = (error) => ({
   type: CHANGE_ERROR,
   error
-})
+});
 
-export const handleChange = (evt) => {
+export const handleSongChange = (evt) => {
   return (dispatch, getState) => {
     dispatch(updateSongId(evt.target.value));
-    dispatch(changeError(false));  
+    dispatch(changeError(false));
   }
+};
 
-  
-}
-
-export const handleSubmit = (evt) => {
-
-  return (dispatch, getState) => { 
+export const handleSongSubmit = (evt) => {
+  return (dispatch, getState) => {
     evt.preventDefault();
 
     const playlistId = getState().playlists.selected.id;
     const songId = getState().playlists.songId;
-console.log(songId);
+
     dispatch(addSongToPlaylist(playlistId, songId))
       .catch(() => dispatch(changeError(true)));
-
   }
-  
-}
+};
+
+export const updateName = (name) => ({
+  type: UPDATE_NAME,
+  name
+});
+
+export const changeDirty = (dirty) => ({
+  type: CHANGE_DIRTY,
+  dirty
+});
+
+export const updateWarning = (warning) => ({
+  type: UPDATE_WARNING,
+  warning
+});
+
+export const handleChange = (evt) => {
+  return (dispatch, getState) => {
+    dispatch(updateName(evt.target.value));
+    dispatch(changeDirty(true));
+    let warning = '';
+    if (!getState().playlists.name && !getState().playlists.dirty) warning = 'You must enter a name';
+    else if (!getState().playlists.name.length > 16) warning = 'Name must be less than 16 characters';
+    if (warning) dispatch(updateWarning(warning));
+  }
+};
+
+export const handleSubmit = (evt) => {
+  return (dispatch, getState) => {
+    evt.preventDefault();
+
+    dispatch(addNewPlaylist(getState().playlists.name));
+    dispatch(updateName(''));
+    dispatch(changeDirty(false));
+  }
+};
 
 
 
