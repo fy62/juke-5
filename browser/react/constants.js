@@ -10,6 +10,7 @@ export const RECEIVE_ALBUM = 'RECEIVE_ALBUM';
 // Artists
 export const RECEIVE_ARTISTS = 'RECEIVE_ARTISTS';
 export const RECEIVE_ARTIST = 'RECEIVE_ARTIST';
+export const UPDATE_ARTIST = 'UPDATE_ARTIST';
 
 // Playlists
 export const RECEIVE_PLAYLISTS = 'RECEIVE_PLAYLISTS';

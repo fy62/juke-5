@@ -1,4 +1,4 @@
-import {RECEIVE_ARTISTS, RECEIVE_ARTIST} from '../constants';
+import {RECEIVE_ARTISTS, RECEIVE_ARTIST, UPDATE_ARTIST} from '../constants';
 import axios from 'axios';
 
 export const receiveArtists = artists => ({
@@ -27,3 +27,14 @@ export const getArtistById = artistId => {
       });
   };
 };
+
+export const updateArtist = (artist) => ({
+  type: UPDATE_ARTIST,
+  artist
+});
+
+export const handleChange = (event) => {
+  return (dispatch, getState) => {
+    dispatch(updateArtist(event.target.value));
+  }
+}

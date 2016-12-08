@@ -140,9 +140,13 @@ export const handleChange = (evt) => {
     dispatch(updateName(evt.target.value));
     dispatch(changeDirty(true));
     let warning = '';
-    if (!getState().playlists.name && !getState().playlists.dirty) warning = 'You must enter a name';
-    else if (!getState().playlists.name.length > 16) warning = 'Name must be less than 16 characters';
-    if (warning) dispatch(updateWarning(warning));
+    if ((!getState().playlists.name) && (getState().playlists.dirty)) {
+      warning = 'You must enter a name';
+    }
+    else if (getState().playlists.name.length > 16) {
+      warning = 'Name must be less than 16 characters';
+    }
+    dispatch(updateWarning(warning));
   }
 };
 

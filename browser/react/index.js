@@ -6,6 +6,7 @@ import AlbumsContainer from './containers/AlbumsContainer';
 import AlbumContainer from './containers/AlbumContainer';
 import ArtistContainer from './containers/ArtistContainer';
 import FilterableArtistsContainer from './containers/FilterableArtistsContainer';
+//import {FilterInputComp, ArtistsComp} from './containers/FilterableArtistsContainer';
 import NewPlaylistContainer from './containers/NewPlaylistContainer';
 import PlaylistContainer from './containers/PlaylistContainer';
 import LyricsContainer from './containers/LyricsContainer';
@@ -17,9 +18,6 @@ import Albums from './components/Albums';
 import Songs from './components/Songs';
 import AUDIO from './audio';
 import {setProgress, next} from './action-creators/player';
-
-// import Stations from './components/Stations';
-// import Station from './components/Station';
 
 import axios from 'axios';
 import store from './store';

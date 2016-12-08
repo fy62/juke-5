@@ -1,13 +1,15 @@
 import {
   RECEIVE_ARTISTS,
-  RECEIVE_ARTIST
+  RECEIVE_ARTIST,
+  UPDATE_ARTIST
 } from '../constants';
 
 import {convertAlbums, convertSong} from '../utils';
 
 const initialArtistState = {
   selected: {},
-  list: []
+  list: [],
+  name: ''
 };
 
 export default function (state = initialArtistState, action) {
@@ -24,6 +26,10 @@ export default function (state = initialArtistState, action) {
       action.artist.albums = convertAlbums(action.albums);
       action.artist.songs = action.songs.map(convertSong);
       newState.selected = action.artist;
+      break;
+
+    case UPDATE_ARTIST:
+      newState.name = action.name;
       break;
 
     default:
