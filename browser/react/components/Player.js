@@ -5,7 +5,7 @@ export default function (props) {
   const currentSong = props.currentSong;
   const isPlaying = props.isPlaying;
   const progress = props.progress;
-  const prev = props.prev;
+  const previous = props.previous;
   const toggle = props.toggle;
   const next = props.next;
 
@@ -13,7 +13,7 @@ export default function (props) {
     <footer>
       <div style={!currentSong.id ? {display: 'none'} : null}>
         <div className="pull-left">
-          <button className="btn btn-default" onClick={prev}>
+          <button className="btn btn-default" onClick={previous}>
             <span className="glyphicon glyphicon-step-backward"></span>
           </button>
           <button className="btn btn-default" onClick={toggle}>

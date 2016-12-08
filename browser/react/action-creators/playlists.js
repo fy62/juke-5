@@ -1,7 +1,9 @@
 import {
   RECEIVE_PLAYLISTS,
   RECEIVE_PLAYLIST,
-  RECEIVE_SONGS
+  RECEIVE_SONGS,
+  CHANGE_ERROR,
+  UPDATE_SONG
 } from '../constants';
 
 import axios from 'axios';
@@ -55,6 +57,7 @@ export const loadAllSongs = () => {
   return dispatch => {
     axios.get('/api/songs')
       .then(response => {
+        console.dir(response.data);
         dispatch(receiveAllSongs(response.data));
       });
   };
@@ -84,3 +87,40 @@ export const addSongToPlaylist = (playlistId, songId) => {
   };
 
 };
+
+export const updateSongId = (songId) => ({
+  type: UPDATE_SONG,
+  songId
+})
+
+export const changeError = (error) => ({
+  type: CHANGE_ERROR,
+  error
+})
+
+export const handleChange = (evt) => {
+  return (dispatch, getState) => {
+    dispatch(updateSongId(evt.target.value));
+    dispatch(changeError(false));  
+  }
+
+  
+}
+
+export const handleSubmit = (evt) => {
+
+  return (dispatch, getState) => { 
+    evt.preventDefault();
+
+    const playlistId = getState().playlists.selected.id;
+    const songId = getState().playlists.songId;
+console.log(songId);
+    dispatch(addSongToPlaylist(playlistId, songId))
+      .catch(() => dispatch(changeError(true)));
+
+  }
+  
+}
+
+
+

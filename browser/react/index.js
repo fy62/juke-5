@@ -15,6 +15,9 @@ import StationContainer from './containers/StationContainer';
 import App from './components/App';
 import Albums from './components/Albums';
 import Songs from './components/Songs';
+import AUDIO from './audio';
+import {setProgress, next} from './action-creators/player';
+
 // import Stations from './components/Stations';
 // import Station from './components/Station';
 
@@ -39,6 +42,12 @@ const onAppEnter = function () {
       store.dispatch(receivePlaylists(playlists));
     });
 
+    AUDIO.addEventListener('ended', store.dispatch(next()));
+    AUDIO.addEventListener('timeupdate', () => {
+      store.dispatch(setProgress(AUDIO.currentTime / AUDIO.duration));
+    });
+
+
 };
 
 const onAlbumEnter = function (nextRouterState) {
@@ -52,10 +61,13 @@ const onArtistEnter = function (nextRouterState) {
 const onPlaylistEnter = function (nextRouterState) {
   const playlistId = nextRouterState.params.playlistId;
   store.dispatch(getPlaylistById(playlistId));
+  store.dispatch(loadAllSongs());
 };
 const onStationsEnter = function (nextRouterState) {
   store.dispatch(loadAllSongs());
 };
+
+
 
 ReactDOM.render(
   <Provider store={store}>

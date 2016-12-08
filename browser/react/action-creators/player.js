@@ -59,6 +59,8 @@ export const setProgress = progress => ({
 
 export const load = (song, list) => {
   return dispatch => {
+    if (!song) return;
+
     AUDIO.src = song.audioUrl;
     AUDIO.load();
     dispatch(setCurrentList(list));

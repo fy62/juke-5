@@ -13,6 +13,8 @@ export const RECEIVE_ARTIST = 'RECEIVE_ARTIST';
 export const RECEIVE_PLAYLISTS = 'RECEIVE_PLAYLISTS';
 export const RECEIVE_PLAYLIST = 'RECEIVE_PLAYLIST';
 export const RECEIVE_SONGS = 'RECEIVE_SONGS';
+export const UPDATE_SONG = 'UPDATE_SONG'; 
+export const CHANGE_ERROR = 'CHANGE_ERROR';
 
 // Player
 export const START_PLAYING = 'START_PLAYING';

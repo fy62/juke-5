@@ -4,7 +4,6 @@ import {toggleSong} from '../action-creators/player';
 import {convertSong} from '../utils';
 
 const mapStateToProps = (state, ownProps) => {
-  //console.log(state);
   return {
     genreName: ownProps.params.genreName,
     songs: state.songs.filter(song => (song.genre === ownProps.params.genreName)).map(convertSong),
